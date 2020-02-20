@@ -1,3 +1,9 @@
+package todo.joooahn;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class TodoDto {
     long id;
     String title;
@@ -31,7 +37,15 @@ public class TodoDto {
         this.name = name;
     }
 
-    public String getRegDate() {
+    public String getRegDate() throws ParseException {
+    	//String to Date
+    	SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+    	Date to = format.parse(regDate);
+    	
+    	//Date to String
+    	format = new SimpleDateFormat("yyyy.MM.dd");
+    	regDate = format.format(to);
+   
         return regDate;
     }
 
