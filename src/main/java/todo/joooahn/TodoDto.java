@@ -37,10 +37,16 @@ public class TodoDto {
         this.name = name;
     }
 
-    public String getRegDate() throws ParseException {
+    public String getRegDate() {
     	//String to Date
     	SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-    	Date to = format.parse(regDate);
+    	Date to = null;
+		try {
+			to = format.parse(regDate);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
     	
     	//Date to String
     	format = new SimpleDateFormat("yyyy.MM.dd");

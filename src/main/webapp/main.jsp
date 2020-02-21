@@ -6,52 +6,11 @@
 <%@ page import="todo.joooahn.TodoDto" %>
 
 <%
-	List<TodoDto> todo = (List<TodoDto>)request.getAttribute("todo");
-	List<TodoDto> doing = (List<TodoDto>)request.getAttribute("doing");
-	List<TodoDto> done = (List<TodoDto>)request.getAttribute("done");
-	
-	String todoTag = "<div class=\"type\">TODO</div>";
-	for(int i = 0; i < todo.size(); i++)
-	{
-		todoTag += "<div class=\"item\">"+
-			      		 "<div id=\"title\">"+todo.get(i).getTitle()+"</div>"+
-		      			 "<div id=\"info\">"+
-				      		 "등록날짜:"+todo.get(i).getRegDate()+", "+
-				      		 todo.get(i).getName()+", "+
-				      		 todo.get(i).getSequence()+
-			      		 "</div>"+
-	    				 "</div>"	
-	    				 ;
-	}
-	
-	String doingTag = "<div class=\"type\">DOING</div>";
-	for(int i = 0; i < doing.size(); i++)
-	{
-		doingTag += "<div class=\"item\">"+
-			      		 "<div id=\"title\">"+doing.get(i).getTitle()+"</div>"+
-		      			 "<div id=\"info\">"+
-				      		 "등록날짜:"+doing.get(i).getRegDate()+", "+
-				      			doing.get(i).getName()+", "+
-				      			doing.get(i).getSequence()+
-			      		 "</div>"+
-	    				 "</div>"	
-	    				 ;
-	}
-	
-	String doneTag = "<div class=\"type\">DONE</div>";
-	for(int i = 0; i < done.size(); i++)
-	{
-		doneTag += "<div class=\"item\">"+
-			      		 "<div id=\"title\">"+done.get(i).getTitle()+"</div>"+
-		      			 "<div id=\"info\">"+
-				      		 "등록날짜:"+done.get(i).getRegDate()+", "+
-				      		 done.get(i).getName()+", "+
-				   				 done.get(i).getSequence()+
-			      		 "</div>"+
-	    				 "</div>"	
-	    				 ;
-	}
+	String todoTag = (String)request.getAttribute("todoTag");
+	String doingTag = (String)request.getAttribute("doingTag");	
+	String doneTag = (String)request.getAttribute("doneTag");
 %>
+
 
 <html>
 	<head>
