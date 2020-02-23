@@ -73,4 +73,5 @@ img {
   width:22px;
   height:18px;
   border:solid gray 1px;
+  cursor:pointer; 
 }

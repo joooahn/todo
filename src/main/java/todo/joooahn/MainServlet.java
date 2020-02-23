@@ -80,6 +80,7 @@ public class MainServlet extends HttpServlet {
 		Collections.sort(doing);
 		Collections.sort(done);
 		
+			
 		request.setAttribute("todo", todo);
 		request.setAttribute("doing", doing);
 		request.setAttribute("done", done);
