@@ -1,7 +1,11 @@
 package todo.joooahn;
 
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -43,6 +47,21 @@ public class MainServlet extends HttpServlet {
 		// type별로 분리 
 		for(TodoDto item : getList)
 		{
+	    	//String to Date
+	    	SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+	    	Date to = null;
+	    	
+			try {
+				to = format.parse(item.regDate);
+			} catch (ParseException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+	    	
+	    	//Date to String
+	    	format = new SimpleDateFormat("yyyy.MM.dd");
+	    	item.regDate = format.format(to);
+	    	
 			if(item.getType().compareTo("TODO") == 0)
 			{
 				todo.add(item);
@@ -56,54 +75,14 @@ public class MainServlet extends HttpServlet {
 				done.add(item);
 			}
 		}
-
 		
-		// type별로 tag 만들
-		String todoTag = "<div class=\"type\">TODO</div>";
-		for(int i = 0; i < todo.size(); i++)
-		{
-			todoTag += "<div class=\"item\">"+
-				      		 "<div id=\"title\">"+todo.get(i).getTitle()+"</div>"+
-			      			 "<div id=\"info\">"+
-					      		 "등록날짜:"+todo.get(i).getRegDate()+", "+
-					      		 todo.get(i).getName()+", "+
-					      		 todo.get(i).getSequence()+
-				      		 "</div>"+
-		    				 "</div>"	
-		    				 ;
-		}
+		Collections.sort(todo);
+		Collections.sort(doing);
+		Collections.sort(done);
 		
-		String doingTag = "<div class=\"type\">DOING</div>";
-		for(int i = 0; i < doing.size(); i++)
-		{
-			doingTag += "<div class=\"item\">"+
-				      		 "<div id=\"title\">"+doing.get(i).getTitle()+"</div>"+
-			      			 "<div id=\"info\">"+
-					      		 "등록날짜:"+doing.get(i).getRegDate()+", "+
-					      			doing.get(i).getName()+", "+
-					      			doing.get(i).getSequence()+
-				      		 "</div>"+
-		    				 "</div>"	
-		    				 ;
-		}
-		
-		String doneTag = "<div class=\"type\">DONE</div>";
-		for(int i = 0; i < done.size(); i++)
-		{
-			doneTag += "<div class=\"item\">"+
-				      		 "<div id=\"title\">"+done.get(i).getTitle()+"</div>"+
-			      			 "<div id=\"info\">"+
-					      		 "등록날짜:"+done.get(i).getRegDate()+", "+
-					      		 done.get(i).getName()+", "+
-					   				 done.get(i).getSequence()+
-				      		 "</div>"+
-		    				 "</div>"	
-		    				 ;
-		}
-		
-		request.setAttribute("todoTag", todoTag);
-		request.setAttribute("doingTag", doingTag);
-		request.setAttribute("doneTag", doneTag);
+		request.setAttribute("todo", todo);
+		request.setAttribute("doing", doing);
+		request.setAttribute("done", done);
         
 		RequestDispatcher requestDispatcher = request.getRequestDispatcher("/main.jsp");
 		requestDispatcher.forward(request, response);

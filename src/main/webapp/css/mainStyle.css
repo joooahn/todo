@@ -1,21 +1,26 @@
 @charset "UTF-8";
 
 body {
- margin-left: 10%;
+ margin-left: 22%;
  margin-right: 5%;
 }
 
 .newTodo {
-  float: left;
+  float: right;
   margin-left: 70%;
   height: 35px;
   width: 170px;
   background-color: #42bff5;
   line-height: 2.7;
   text-align: center;
-  color: white;
   font-size: 90%;
 }
+
+.newtodo > a {
+  text-decoration: none;
+  color:white;
+}
+
 
 section {
   height:100px;
@@ -29,11 +34,12 @@ section {
 }
 
 .type {
-  width: 150px;
+  width: 250px;
   height: 50px;
   font-size: 20px;
+  font-weight:bold;
   color: white;
-  line-height: 2.5;
+  line-height: 2.7;
   padding-left: 15px;
   background-color: #094a66;
 }
@@ -41,21 +47,30 @@ section {
 .item {
   margin-top:10px;
   height: 50px;
-  padding: 10px 0px 5px 10px;
+  width:250px;
+  padding: 15px 5px 5px 10px;
   background-color: #a9ccf5;
   color: black;
+  overflow:auto;
 }
 
 #title {
   color: black;
+  font-size:15px;
 }
+
 #info {  
   margin-top: 5px;
+  float:left;
   color: #213025;
+  font-size:13px;
 }
 
-
-
-
-
-
+img {
+  margin-top:6px;
+  margin-right:3px;
+  float : right;
+  width:22px;
+  height:18px;
+  border:solid gray 1px;
+}

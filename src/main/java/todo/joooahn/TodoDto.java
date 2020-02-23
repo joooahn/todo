@@ -4,8 +4,9 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class TodoDto {
-    long id;
+public class TodoDto implements Comparable<TodoDto>{
+
+	long id;
     String title;
     String name;
     String regDate;
@@ -21,6 +22,20 @@ public class TodoDto {
         this.sequence = sequence;
     }
 
+    @Override
+	public int compareTo(TodoDto o) {
+		// TODO Auto-generated method stub
+    	if(this.sequence < o.sequence)
+    	{
+    		return -1;
+    	}
+    	else if(this.sequence > o.sequence)
+    	{
+    		return 1;
+    	}
+    	else return 0;
+	}
+    
     public long getId() {
         return id;
     }
@@ -37,21 +52,7 @@ public class TodoDto {
         this.name = name;
     }
 
-    public String getRegDate() {
-    	//String to Date
-    	SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-    	Date to = null;
-		try {
-			to = format.parse(regDate);
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-    	
-    	//Date to String
-    	format = new SimpleDateFormat("yyyy.MM.dd");
-    	regDate = format.format(to);
-   
+    public String getRegDate() {   
         return regDate;
     }
 

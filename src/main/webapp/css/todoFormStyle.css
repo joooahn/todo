@@ -1,0 +1,85 @@
+header {
+  margin-top:5%;
+  text-align: center;
+  font-size: 25px;
+  font-weight: bold;
+}
+
+.container {
+  padding-top: 30px;
+  padding-left: 30%;
+  font-size: 20px;
+  overflow: auto;
+}
+
+#inputTitle {
+  margin-top: 10px;
+  width: 300px;
+  height:30px;
+}
+
+#name {
+  margin-top: 40px;
+}
+
+#inputName{
+  margin-top: 10px;
+  width: 200px;
+  height:30px;
+}
+
+.radio {
+  margin-top: 40px;
+}
+
+#d2, #d3 {
+ margin-top: 20px;
+ margin-left: 50px;
+}
+
+.buttons {
+  margin-top: 40px;
+}
+
+.buttons > * {
+  float: left;
+  width : 130px;
+  height :  40px;
+  border : 2px solid gray;
+  text-align: center;
+  line-height: 1.7;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+#prev {
+  background-color: white;
+  color:black;
+}
+
+#submit {
+  margin-left: 20%;
+  background-color: #5F9EA0;
+  color:white;
+}
+
+#clear {
+  margin-left: 10px;
+  background-color: #5F9EA0;
+  color:white;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

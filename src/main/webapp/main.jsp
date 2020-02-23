@@ -6,16 +6,15 @@
 <%@ page import="todo.joooahn.TodoDto" %>
 
 <%
-	String todoTag = (String)request.getAttribute("todoTag");
+	List<TodoDto> todo = (ArrayList<TodoDto>)request.getAttribute("todo");
 	String doingTag = (String)request.getAttribute("doingTag");	
 	String doneTag = (String)request.getAttribute("doneTag");
 %>
 
-
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-		<link rel="stylesheet" href="style.css" type="text/css">
+		<link rel="stylesheet" href="css/mainStyle.css" type="text/css">
 	</head>
 	<body>
 		<hedaer>
@@ -24,20 +23,48 @@
 		  </div>
 		</hedaer>
 		<section>
-		  <div class="panel" id="todo">	
-		  </div>
-		  <script type="text/javascript">
-		 		document.querySelector('#todo').innerHTML = '<%=todoTag%>';
-		  </script>
+		  <div class="panel" id="todo">
+		  	<div class="type">TODO</div>	
+				  <c:forEach items="${todo}" var="item">
+						<div class=item>
+							<div id=title>${item.title}</div>
+							<div id=info>
+											${item.regDate },
+							      	${item.name},
+							      	우선순위 ${item.sequence }
+							</div>
+								<img src="img/arrow.png" alt="arrow" />
+						</div>	
+					</c:forEach>
+				</div>
 		  <div class="panel" id="doing">
-			<script type="text/javascript">
-		 		document.querySelector('#doing').innerHTML = '<%=doingTag%>';
-		 	</script>
+				<div class="type">DOING</div>	
+					  <c:forEach items="${doing}" var="item">
+							<div class=item>
+								<div id=title>${item.title}</div>
+								<div id=info>
+												${item.regDate },
+								      	${item.name},
+								      	우선순위 ${item.sequence }
+								</div>
+								<img src="img/arrow.png" alt="arrow" />
+							</div>	
+						</c:forEach>
+					</div>
 		  </div>
 		  <div class="panel" id="done">
-		  <script type="text/javascript">
-		 		document.querySelector('#done').innerHTML = '<%=doneTag%>';
-		 	</script>
+			  <div class="type">DONE</div>	
+					  <c:forEach items="${done}" var="item">
+							<div class=item>
+								<div id=title>${item.title}</div>
+								<div id=info>
+												${item.regDate },
+								      	${item.name},
+								      	우선순위 ${item.sequence }
+								</div>
+							</div>	
+						</c:forEach>
+					</div>
 		  </div>
 		</section>
 	</body>
