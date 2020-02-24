@@ -58,7 +58,7 @@ public class TodoTypeServlet extends HttpServlet {
 		String type = element.getAsJsonObject().get("type").getAsString();
 		
 		String nextType = "";
-		
+		 
 		if(type.compareTo("todo") == 0)
 		{
 			nextType = "DOING";
@@ -66,16 +66,26 @@ public class TodoTypeServlet extends HttpServlet {
 		else if(type.compareTo("doing") == 0)
 		{
 			nextType = "DONE";
-		}		
-		else
+		}	
+		// type 잘못 들어왔을 경우 
+		else 
 		{
-			
+			response.getWriter().append("fail");
+			return;
 		}
 		
 		TodoDao todoDao = new TodoDao();
 		int result = todoDao.updateTodo(nextType, id);		
-		
-		response.getWriter().append("success");
+				
+		// DB update 잘못됐을 경우 
+		if(result > 0)
+		{
+			response.getWriter().append("success");
+		}
+		else
+		{
+			response.getWriter().append("fail");
+		}
 	}
 
 }

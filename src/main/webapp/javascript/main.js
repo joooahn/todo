@@ -13,7 +13,8 @@ function evt() {
 		if (xhr.readyState !== XMLHttpRequest.DONE)
 			return;
 
-		if (xhr.status === 200) {
+		if (xhr.status === 200 && xhr.response === 'success') {
+			
 			// next Type 결정  
 			var nextType = "";
 
