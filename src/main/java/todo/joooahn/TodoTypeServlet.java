@@ -1,11 +1,17 @@
 package todo.joooahn;
 
+import java.io.BufferedReader;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import com.google.gson.Gson;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 
 /**
  * Servlet implementation class TodoTypeServlet
@@ -33,9 +39,39 @@ public class TodoTypeServlet extends HttpServlet {
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		doGet(request, response);
+		
+		//JSON Parsing
+		StringBuffer jb = new StringBuffer();
+		String line = null;
+		try {
+			BufferedReader reader = request.getReader();
+			while ((line = reader.readLine()) != null)
+				jb.append(line);
+		} catch (Exception e) {/* report an error */ }
+				
+		JsonParser parser = new JsonParser();
+ 		JsonElement element = parser.parse(jb.toString());
+		long id = element.getAsJsonObject().get("id").getAsLong();
+		String type = element.getAsJsonObject().get("type").getAsString();
+		
+		String nextType = "";
+		
+		if(type.compareTo("todo") == 0)
+		{
+			nextType = "DOING";
+		}
+		else if(type.compareTo("doing") == 0)
+		{
+			nextType = "DONE";
+		}
+		
+		TodoDao todoDao = new TodoDao();
+		int result = todoDao.updateTodo(nextType, id);
+		
+		
 	}
 
 }

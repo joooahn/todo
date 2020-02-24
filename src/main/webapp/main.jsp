@@ -4,11 +4,6 @@
 <%@page import="java.util.List"%>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="todo.joooahn.TodoDto" %>
-<%
-	List<TodoDto> todo = (ArrayList<TodoDto>)request.getAttribute("todo");
-	String doingTag = (String)request.getAttribute("doingTag");	
-	String doneTag = (String)request.getAttribute("doneTag");
-%>
 
 <html>
 	<head>
@@ -71,7 +66,15 @@
 		</section>
 		<script>
 			function evt(){
-				alert(event.currentTarget.parentNode.id);
+				var obj = new Object();
+				
+				obj.id = event.currentTarget.parentNode.id;
+				obj.type = event.currentTarget.parentNode.parentNode.id;
+				
+				const xhr = new XMLHttpRequest();
+				xhr.open('POST', 'TodoTypeServlet');
+				xhr.setRequestHeader('Content-type', 'application/json');
+				xhr.send(JSON.stringify(obj));				
 			}
 		</script>
 	</body>
