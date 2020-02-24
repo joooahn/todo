@@ -64,19 +64,7 @@
 					</div>
 		  </div>
 		</section>
-		<script>
-			function evt(){
-				var obj = new Object();
-				
-				obj.id = event.currentTarget.parentNode.id;
-				obj.type = event.currentTarget.parentNode.parentNode.id;
-				
-				const xhr = new XMLHttpRequest();
-				xhr.open('POST', 'TodoTypeServlet');
-				xhr.setRequestHeader('Content-type', 'application/json');
-				xhr.send(JSON.stringify(obj));				
-			}
-		</script>
+		<script src="javascript/main.js"></script>
 	</body>
 </html>
 

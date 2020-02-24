@@ -66,12 +66,16 @@ public class TodoTypeServlet extends HttpServlet {
 		else if(type.compareTo("doing") == 0)
 		{
 			nextType = "DONE";
+		}		
+		else
+		{
+			
 		}
 		
 		TodoDao todoDao = new TodoDao();
-		int result = todoDao.updateTodo(nextType, id);
+		int result = todoDao.updateTodo(nextType, id);		
 		
-		
+		response.getWriter().append("success");
 	}
 
 }
