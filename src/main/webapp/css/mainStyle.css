@@ -54,12 +54,12 @@ section {
   overflow:auto;
 }
 
-#title {
+.title {
   color: black;
   font-size:15px;
 }
 
-#info {  
+.info {  
   margin-top: 5px;
   float:left;
   color: #213025;
