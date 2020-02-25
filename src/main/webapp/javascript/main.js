@@ -25,9 +25,6 @@ function evt() {
 				nextType = "done";
 			}
 
-			// 옮겨질 element select
-			var element = obj.element;
-
 			// type이 done일 경우 버튼 삭제 
 			if (nextType == "done") {
 				element.removeChild(element.querySelector('img'));
@@ -40,29 +37,36 @@ function evt() {
 			var newParent = document.querySelector('#' + CSS.escape(nextType));
 			newParent.appendChild(element);
 			
-//			// 정렬 
-//			var itemList = [];
-//			var nodeList = newParent.querySelectorAll('.item');
-//			
-//			for(var i = 0; i < nodeList.length; i++)
-//				itemList.push(nodeList[i]);
-//			
-//			itemList.sort(function(a, b){
-//				var aInfoNode = a.querySelector('.info');
-//				var bInfoNode = b.querySelector('.info');
-//				if(aInfoNode.id === bInfoNode.id){
-//					if(a.id < b.id)
-//						return -1;
-//					else if(a.id > b.id)
-//						return 1;
-//				}				
-//				else if(aInfoNode.id < bInfoNode.id)
-//					return -1;
-//				else
-//					return 1;
-//			});
+			// 정렬 
+			var itemList = [];
+			var nodeList = newParent.querySelectorAll('.item');
 			
+			for(var i = 0; i < nodeList.length; i++)
+				itemList.push(nodeList[i]);
+			
+			itemList.sort(function(a, b){
+				var aInfoNode = a.querySelector('.info');
+				var bInfoNode = b.querySelector('.info');
+				if(parseInt(aInfoNode.id) === parseInt(bInfoNode.id)){
+					if(parseInt(a.id) < parseInt(b.id))
+						return -1;
+					else if(parseInt(a.id) > parseInt(b.id))
+						return 1;
+				}				
+				else if(parseInt(aInfoNode.id) < parseInt(bInfoNode.id))
+					return -1;
+				else
+					return 1;
+			});
 						
+			console.log(itemList);
+			// 지우고 정렬된 순서로 다시 그리기
+			for(var i = 0; i < nodeList.length; i++)
+				newParent.removeChild(nodeList[i]);
+			
+			for(var i=0; i < itemList.length; i++)
+				newParent.appendChild(itemList[i]);
+			
 		} else {
 			console.log('Error!');
 		}
